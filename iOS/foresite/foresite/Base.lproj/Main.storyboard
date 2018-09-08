@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,23 +24,31 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zu1-aa-bQk">
-                                <rect key="frame" x="135" y="601" width="100" height="30"/>
+                                <rect key="frame" x="88" y="607" width="200" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="SGx-7o-oqn"/>
+                                </constraints>
                                 <state key="normal" title="Report">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <segue destination="mql-cT-I5u" kind="popoverPresentation" popoverAnchorView="zu1-aa-bQk" id="Dxg-e0-UTD">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zu1-aa-bQk" secondAttribute="trailing" constant="140" id="8l2-PF-0Td"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zu1-aa-bQk" secondAttribute="trailing" constant="87" id="7Wb-3g-8Qt"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="zu1-aa-bQk" secondAttribute="bottom" constant="20" id="Cn1-Sg-ta3"/>
                             <constraint firstAttribute="trailing" secondItem="eYi-Hb-Kh0" secondAttribute="trailing" id="E2q-vc-U3b"/>
                             <constraint firstItem="eYi-Hb-Kh0" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Hfc-2m-d1g"/>
+                            <constraint firstItem="zu1-aa-bQk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="88" id="I6j-GT-Le6"/>
                             <constraint firstItem="eYi-Hb-Kh0" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="SJM-uS-Ukq"/>
-                            <constraint firstItem="zu1-aa-bQk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="135" id="Tj0-TS-vSS"/>
                             <constraint firstAttribute="bottom" secondItem="eYi-Hb-Kh0" secondAttribute="bottom" id="ftq-G7-ZAf"/>
                             <constraint firstItem="eYi-Hb-Kh0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="iox-sH-tqh"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="zu1-aa-bQk" secondAttribute="bottom" constant="36" id="lnV-J4-ioD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -50,6 +59,87 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="120.98950524737631"/>
+        </scene>
+        <!--Report View Controller-->
+        <scene sceneID="fIt-2W-FRW">
+            <objects>
+                <viewController id="mql-cT-I5u" customClass="ReportViewController" customModule="foresite" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2M9-rd-vks">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="a6G-jo-1MY">
+                                <rect key="frame" x="27" y="47" width="320" height="29"/>
+                                <segments>
+                                    <segment title="Report"/>
+                                    <segment title="Request"/>
+                                </segments>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </segmentedControl>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sow-DA-RTH">
+                                <rect key="frame" x="27" y="75" width="320" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="t5y-Ck-axG"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="mql-cT-I5u" id="E6c-bL-Pts"/>
+                                    <outlet property="delegate" destination="mql-cT-I5u" id="v9k-HB-Ve0"/>
+                                </connections>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zxu-IB-P4M">
+                                <rect key="frame" x="148" y="233" width="78" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="623-fb-3Kv">
+                                <rect key="frame" x="70" y="257" width="234" height="29"/>
+                                <segments>
+                                    <segment title="My Location"/>
+                                    <segment title="Other"/>
+                                </segments>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comments:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X3u-YV-6A6">
+                                <rect key="frame" x="141" y="307" width="93" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RYE-pd-Rr4">
+                                <rect key="frame" x="27" y="336" width="320" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="RYE-pd-Rr4" firstAttribute="centerX" secondItem="X3u-YV-6A6" secondAttribute="centerX" id="40G-iM-XOd"/>
+                            <constraint firstItem="RYE-pd-Rr4" firstAttribute="top" secondItem="X3u-YV-6A6" secondAttribute="bottom" constant="8" symbolic="YES" id="90V-kz-g7T"/>
+                            <constraint firstItem="a6G-jo-1MY" firstAttribute="top" secondItem="dyZ-yZ-FmQ" secondAttribute="top" constant="27" id="BHy-UF-59N"/>
+                            <constraint firstItem="sow-DA-RTH" firstAttribute="leading" secondItem="2M9-rd-vks" secondAttribute="leadingMargin" constant="11" id="DWi-Jf-sl8"/>
+                            <constraint firstItem="RYE-pd-Rr4" firstAttribute="trailing" secondItem="sow-DA-RTH" secondAttribute="trailing" id="Dyy-mV-pzx"/>
+                            <constraint firstItem="623-fb-3Kv" firstAttribute="top" secondItem="zxu-IB-P4M" secondAttribute="bottom" constant="3" id="LF7-1Z-mUC"/>
+                            <constraint firstItem="RYE-pd-Rr4" firstAttribute="leading" secondItem="sow-DA-RTH" secondAttribute="leading" id="MmZ-hj-3sv"/>
+                            <constraint firstItem="zxu-IB-P4M" firstAttribute="centerX" secondItem="sow-DA-RTH" secondAttribute="centerX" id="NCK-qe-VdA"/>
+                            <constraint firstItem="a6G-jo-1MY" firstAttribute="leading" secondItem="sow-DA-RTH" secondAttribute="leading" id="O3Y-H3-p9r"/>
+                            <constraint firstItem="623-fb-3Kv" firstAttribute="leading" secondItem="dyZ-yZ-FmQ" secondAttribute="leading" constant="70" id="UTC-qw-gmn"/>
+                            <constraint firstItem="sow-DA-RTH" firstAttribute="top" secondItem="a6G-jo-1MY" secondAttribute="bottom" id="dgG-oW-eqo"/>
+                            <constraint firstItem="a6G-jo-1MY" firstAttribute="trailing" secondItem="sow-DA-RTH" secondAttribute="trailing" id="iB9-xF-8YH"/>
+                            <constraint firstItem="zxu-IB-P4M" firstAttribute="top" secondItem="sow-DA-RTH" secondAttribute="bottom" constant="8" symbolic="YES" id="jMa-47-Bnc"/>
+                            <constraint firstItem="X3u-YV-6A6" firstAttribute="top" secondItem="623-fb-3Kv" secondAttribute="bottom" constant="22" id="kVg-IX-exN"/>
+                            <constraint firstItem="623-fb-3Kv" firstAttribute="centerX" secondItem="zxu-IB-P4M" secondAttribute="centerX" id="tJc-Mw-r78"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="dyZ-yZ-FmQ"/>
+                    </view>
+                    <connections>
+                        <outlet property="picker" destination="sow-DA-RTH" id="kWm-fj-jfn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lmt-X6-sb2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="808.79999999999995" y="115.59220389805098"/>
         </scene>
     </scenes>
 </document>

@@ -18,6 +18,8 @@ import Firebase
 class MapViewController: UIViewController {
 
     @IBOutlet var mapView: GMSMapView!
+
+    
     
     var locationManager: CLLocationManager!
     var userLocation: CLLocation? = nil
