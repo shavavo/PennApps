@@ -21,8 +21,7 @@ class MapViewController: UIViewController {
 
     @IBOutlet var mapView: GMSMapView!
 
-    
-    
+
     var locationManager: CLLocationManager!
     var userLocation: CLLocation? = nil
     
@@ -31,8 +30,12 @@ class MapViewController: UIViewController {
     let DEFAULT_ZOOM: Float = 14
     
     var reports: [Report] = []
+    var reportIDs: [String] = []
+    var seenReportIDs = NSMutableSet()
     
     var ref: DatabaseReference!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,14 +48,21 @@ class MapViewController: UIViewController {
         if(recentlySubmitted != "") {
             let w = UIScreen.main.bounds.width
             
-            self.view.makeToast("Tap here to read about what you can do to protect yourself in a " + recentlySubmitted!.lowercased(), duration: 8.0, point: CGPoint(x: w/2, y: 100), title: "Report Submitted", image: nil) { didTap in
-                if didTap {
-                    self.performSegue(withIdentifier: "tips", sender: self)
-                } else {
-                    print("completion without tap")
+            if(recentlySubmitted != "Other") {
+                self.view.makeToast("Tap here to read about what you can do to protect yourself in a " + recentlySubmitted!.lowercased(), duration: 8.0, point: CGPoint(x: w/2, y: 100), title: "Report Submitted", image: nil) { didTap in
+                    if didTap {
+                        self.performSegue(withIdentifier: "tips", sender: self)
+                    } else {
+                        print("completion without tap")
+                    }
                 }
+            } else {
+                self.view.makeToast("Report Submitted", position: .top)
             }
         }
+        
+        seenReportIDs.removeAllObjects()
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -65,8 +75,6 @@ class MapViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        print(reports)
     }
     
     override func didReceiveMemoryWarning() {
@@ -96,5 +104,35 @@ class MapViewController: UIViewController {
     
     func configureDatabase() {
         ref = Database.database().reference()
+    }
+    
+    func addMarkers() {
+        print(reports.count)
+        
+        for x in 0..<reports.count {
+            if(!seenReportIDs.contains(reportIDs[x])) {
+
+                var report = reports[x]
+
+                print("ADDED MARKER")
+
+                let position = CLLocationCoordinate2D(latitude: report.latitude, longitude: report.longitude)
+                let marker = GMSMarker(position: position)
+
+                let markerImage = UIImage(named: report.disasterType.rawValue)!
+                let markerView = UIImageView(frame: CGRect(x:0, y:0, width:50, height:50))
+                markerView.image = markerImage
+
+                marker.iconView = markerView
+                marker.tracksViewChanges = false
+                marker.map = mapView
+                marker.title = report.comment
+         
+               
+                seenReportIDs.add(reportIDs[x])
+
+            }
+
+        }
     }
 }

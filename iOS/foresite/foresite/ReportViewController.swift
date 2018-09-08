@@ -39,9 +39,7 @@ class ReportViewController: UIViewController, GMSPlacePickerViewControllerDelega
         var newReport = Report()
         //Report(latitude: <#T##CLLocationDegrees#>, longitude: <#T##CLLocationDegrees#>, time: <#T##Date#>, disasterType: <#T##Report.DisasterTypes#>, comment: <#T##String#>)
         
-        
-        
-        
+
 
         newReport.latitude = place?.coordinate.latitude
         newReport.longitude = place?.coordinate.longitude
@@ -74,7 +72,6 @@ class ReportViewController: UIViewController, GMSPlacePickerViewControllerDelega
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "submitReturn" {
             if let destVC = segue.destination as? MapViewController {
-                print("PLES")
                 destVC.recentlySubmitted = pickerData[picker.selectedRow(inComponent: 0)]
             }
         }

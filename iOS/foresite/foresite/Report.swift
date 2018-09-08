@@ -139,7 +139,7 @@ extension Date {
         dateFormatter.locale = enUSPosixLocale
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
         
-        let iso8601String = dateFormatter.string(from: Date())
+        let iso8601String = dateFormatter.string(from: self)
         
         return iso8601String
     }
