@@ -39,20 +39,27 @@ class MapViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         configureMapView()
         configureLocationManager()
+
         configureDatabase()
-        
+
         if(recentlySubmitted != "") {
             let w = UIScreen.main.bounds.width
             
-            self.view.makeToast("Tap here to read about what you can do to protect yourself in a " + recentlySubmitted!.lowercased(), duration: 8.0, point: CGPoint(x: w/2, y: 110.0), title: "Report Submitted", image: nil) { didTap in
+            self.view.makeToast("Tap here to read about what you can do to protect yourself in a " + recentlySubmitted!.lowercased(), duration: 8.0, point: CGPoint(x: w/2, y: 100), title: "Report Submitted", image: nil) { didTap in
                 if didTap {
-                    print("completion from tap")
+                    self.performSegue(withIdentifier: "tips", sender: self)
                 } else {
                     print("completion without tap")
                 }
             }
-            
-            
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "tips" {
+            if let destVC = segue.destination as? TipsViewController {
+                destVC.type = recentlySubmitted!
+            }
         }
     }
 
