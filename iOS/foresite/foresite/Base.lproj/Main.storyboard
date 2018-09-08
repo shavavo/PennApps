@@ -19,24 +19,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eYi-Hb-Kh0" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="20" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cTq-xh-1I7">
-                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
-                                <items>
-                                    <barButtonItem title="Item" id="Gb9-sF-8Eh"/>
-                                </items>
-                            </toolbar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zu1-aa-bQk">
+                                <rect key="frame" x="135" y="601" width="100" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Report">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="eYi-Hb-Kh0" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="0ZB-WQ-Qlm"/>
-                            <constraint firstItem="eYi-Hb-Kh0" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="RWX-WP-eqs"/>
-                            <constraint firstItem="cTq-xh-1I7" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="c4E-WF-Xhn"/>
-                            <constraint firstItem="eYi-Hb-Kh0" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="fCJ-ZL-egf"/>
-                            <constraint firstItem="cTq-xh-1I7" firstAttribute="top" secondItem="eYi-Hb-Kh0" secondAttribute="bottom" id="oJa-xE-W0S"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="cTq-xh-1I7" secondAttribute="bottom" id="uhl-P5-tNi"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zu1-aa-bQk" secondAttribute="trailing" constant="140" id="8l2-PF-0Td"/>
+                            <constraint firstAttribute="trailing" secondItem="eYi-Hb-Kh0" secondAttribute="trailing" id="E2q-vc-U3b"/>
+                            <constraint firstItem="eYi-Hb-Kh0" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Hfc-2m-d1g"/>
+                            <constraint firstItem="eYi-Hb-Kh0" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="SJM-uS-Ukq"/>
+                            <constraint firstItem="zu1-aa-bQk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="135" id="Tj0-TS-vSS"/>
+                            <constraint firstAttribute="bottom" secondItem="eYi-Hb-Kh0" secondAttribute="bottom" id="ftq-G7-ZAf"/>
+                            <constraint firstItem="eYi-Hb-Kh0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="iox-sH-tqh"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="zu1-aa-bQk" secondAttribute="bottom" constant="36" id="lnV-J4-ioD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
