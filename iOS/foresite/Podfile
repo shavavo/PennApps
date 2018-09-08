@@ -8,6 +8,6 @@ target 'foresite' do
   # Pods for foresite
   pod 'GoogleMaps'
   pod 'GooglePlaces'
-
+  pod 'Firebase/Core'
 
 end

@@ -9,22 +9,30 @@
 /* Begin PBXBuildFile section */
 		38AE26BD3F8770B622613BF6 /* Pods_foresite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4CB3F5BB5A5BDDE9C600FBF /* Pods_foresite.framework */; };
 		4B5CB18021438603006F676A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5CB17F21438603006F676A /* AppDelegate.swift */; };
-		4B5CB18221438603006F676A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5CB18121438603006F676A /* ViewController.swift */; };
+		4B5CB18221438603006F676A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5CB18121438603006F676A /* MapViewController.swift */; };
 		4B5CB18521438603006F676A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B5CB18321438603006F676A /* Main.storyboard */; };
 		4B5CB18721438604006F676A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B5CB18621438604006F676A /* Assets.xcassets */; };
 		4B5CB18A21438604006F676A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B5CB18821438604006F676A /* LaunchScreen.storyboard */; };
+		C7A2012E21438BE800D8D8AC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C7A2012D21438BE800D8D8AC /* GoogleService-Info.plist */; };
+		C7A201302143915800D8D8AC /* PrivateConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A2012F2143915700D8D8AC /* PrivateConstants.swift */; };
+		C7A201322143925700D8D8AC /* MapViewController_David.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A201312143925700D8D8AC /* MapViewController_David.swift */; };
+		C7A201342143928700D8D8AC /* MapViewController_Brian.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A201332143928700D8D8AC /* MapViewController_Brian.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2B534DE103FCF6AFC39E214A /* Pods-foresite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-foresite.release.xcconfig"; path = "Pods/Target Support Files/Pods-foresite/Pods-foresite.release.xcconfig"; sourceTree = "<group>"; };
 		4B5CB17C21438603006F676A /* foresite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = foresite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B5CB17F21438603006F676A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4B5CB18121438603006F676A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4B5CB18121438603006F676A /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		4B5CB18421438603006F676A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4B5CB18621438604006F676A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B5CB18921438604006F676A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4B5CB18B21438604006F676A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		634F43F9600EEC8247DD4411 /* Pods-foresite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-foresite.debug.xcconfig"; path = "Pods/Target Support Files/Pods-foresite/Pods-foresite.debug.xcconfig"; sourceTree = "<group>"; };
+		C7A2012D21438BE800D8D8AC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C7A2012F2143915700D8D8AC /* PrivateConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateConstants.swift; sourceTree = "<group>"; };
+		C7A201312143925700D8D8AC /* MapViewController_David.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController_David.swift; sourceTree = "<group>"; };
+		C7A201332143928700D8D8AC /* MapViewController_Brian.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController_Brian.swift; sourceTree = "<group>"; };
 		F4CB3F5BB5A5BDDE9C600FBF /* Pods_foresite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_foresite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -79,11 +87,15 @@
 			isa = PBXGroup;
 			children = (
 				4B5CB17F21438603006F676A /* AppDelegate.swift */,
-				4B5CB18121438603006F676A /* ViewController.swift */,
+				4B5CB18121438603006F676A /* MapViewController.swift */,
+				C7A201332143928700D8D8AC /* MapViewController_Brian.swift */,
+				C7A201312143925700D8D8AC /* MapViewController_David.swift */,
+				C7A2012F2143915700D8D8AC /* PrivateConstants.swift */,
 				4B5CB18321438603006F676A /* Main.storyboard */,
 				4B5CB18621438604006F676A /* Assets.xcassets */,
 				4B5CB18821438604006F676A /* LaunchScreen.storyboard */,
 				4B5CB18B21438604006F676A /* Info.plist */,
+				C7A2012D21438BE800D8D8AC /* GoogleService-Info.plist */,
 			);
 			path = foresite;
 			sourceTree = "<group>";
@@ -100,6 +112,7 @@
 				4B5CB17921438603006F676A /* Frameworks */,
 				4B5CB17A21438603006F676A /* Resources */,
 				7C3910221F518F8073BB0CC6 /* [CP] Copy Pods Resources */,
+				0E6CEEC71D2A900003FBA08C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -149,6 +162,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B5CB18A21438604006F676A /* LaunchScreen.storyboard in Resources */,
+				C7A2012E21438BE800D8D8AC /* GoogleService-Info.plist in Resources */,
 				4B5CB18721438604006F676A /* Assets.xcassets in Resources */,
 				4B5CB18521438603006F676A /* Main.storyboard in Resources */,
 			);
@@ -157,20 +171,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		67DC1C9D995EF85B0FF7ADE6 /* [CP] Check Pods Manifest.lock */ = {
+		0E6CEEC71D2A900003FBA08C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-foresite/Pods-foresite-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-foresite/Pods-foresite-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		67DC1C9D995EF85B0FF7ADE6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-foresite-checkManifestLockResult.txt",
 			);
@@ -184,16 +214,12 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-foresite/Pods-foresite-resources.sh",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
@@ -210,7 +236,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B5CB18221438603006F676A /* ViewController.swift in Sources */,
+				C7A201322143925700D8D8AC /* MapViewController_David.swift in Sources */,
+				4B5CB18221438603006F676A /* MapViewController.swift in Sources */,
+				C7A201302143915800D8D8AC /* PrivateConstants.swift in Sources */,
+				C7A201342143928700D8D8AC /* MapViewController_Brian.swift in Sources */,
 				4B5CB18021438603006F676A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

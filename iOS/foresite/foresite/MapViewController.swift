@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MapViewController.swift
 //  foresite
 //
 //  Created by David Cheng on 9/8/18.
@@ -7,9 +7,15 @@
 //
 
 import UIKit
+import CoreLocation
 
-class ViewController: UIViewController {
+import GoogleMaps
+import GooglePlaces
 
+class MapViewController: UIViewController {
+
+    @IBOutlet var mapView: GMSMapView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -19,7 +25,8 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    func configureMapView() {
+    
+    }
 }
-
