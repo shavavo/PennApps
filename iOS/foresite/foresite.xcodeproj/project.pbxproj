@@ -13,6 +13,8 @@
 		4B5CB18521438603006F676A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B5CB18321438603006F676A /* Main.storyboard */; };
 		4B5CB18721438604006F676A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B5CB18621438604006F676A /* Assets.xcassets */; };
 		4B5CB1962143AE46006F676A /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5CB1952143AE46006F676A /* ReportViewController.swift */; };
+		4B9C03582144309C009735AE /* TipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9C03572144309C009735AE /* TipsViewController.swift */; };
+		4B9C035A21444E49009735AE /* Tips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9C035921444E49009735AE /* Tips.swift */; };
 		C7A2012E21438BE800D8D8AC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C7A2012D21438BE800D8D8AC /* GoogleService-Info.plist */; };
 		C7A201302143915800D8D8AC /* PrivateConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A2012F2143915700D8D8AC /* PrivateConstants.swift */; };
 		C7A201322143925700D8D8AC /* MapViewController_David.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A201312143925700D8D8AC /* MapViewController_David.swift */; };
@@ -30,6 +32,8 @@
 		4B5CB18621438604006F676A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B5CB18B21438604006F676A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B5CB1952143AE46006F676A /* ReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
+		4B9C03572144309C009735AE /* TipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsViewController.swift; sourceTree = "<group>"; };
+		4B9C035921444E49009735AE /* Tips.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tips.swift; sourceTree = "<group>"; };
 		634F43F9600EEC8247DD4411 /* Pods-foresite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-foresite.debug.xcconfig"; path = "Pods/Target Support Files/Pods-foresite/Pods-foresite.debug.xcconfig"; sourceTree = "<group>"; };
 		C7A2012D21438BE800D8D8AC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C7A2012F2143915700D8D8AC /* PrivateConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateConstants.swift; sourceTree = "<group>"; };
@@ -98,10 +102,12 @@
 				C7A201372143AC1400D8D8AC /* Report.swift */,
 				C7A2012F2143915700D8D8AC /* PrivateConstants.swift */,
 				4B5CB18321438603006F676A /* Main.storyboard */,
+				4B9C03572144309C009735AE /* TipsViewController.swift */,
 				4B5CB18621438604006F676A /* Assets.xcassets */,
 				C7A201352143953700D8D8AC /* LaunchScreen.storyboard */,
 				4B5CB18B21438604006F676A /* Info.plist */,
 				C7A2012D21438BE800D8D8AC /* GoogleService-Info.plist */,
+				4B9C035921444E49009735AE /* Tips.swift */,
 			);
 			path = foresite;
 			sourceTree = "<group>";
@@ -252,11 +258,13 @@
 			files = (
 				C7A201322143925700D8D8AC /* MapViewController_David.swift in Sources */,
 				4B5CB18221438603006F676A /* MapViewController.swift in Sources */,
+				4B9C03582144309C009735AE /* TipsViewController.swift in Sources */,
 				4B5CB1962143AE46006F676A /* ReportViewController.swift in Sources */,
 				C7A201302143915800D8D8AC /* PrivateConstants.swift in Sources */,
 				C7A201342143928700D8D8AC /* MapViewController_Brian.swift in Sources */,
 				4B5CB18021438603006F676A /* AppDelegate.swift in Sources */,
 				C7A201382143AC1400D8D8AC /* Report.swift in Sources */,
+				4B9C035A21444E49009735AE /* Tips.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,7 +402,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V4AH655C9C;
+				DEVELOPMENT_TEAM = Q2PZEH4H6R;
 				INFOPLIST_FILE = foresite/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -414,7 +422,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V4AH655C9C;
+				DEVELOPMENT_TEAM = Q2PZEH4H6R;
 				INFOPLIST_FILE = foresite/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
