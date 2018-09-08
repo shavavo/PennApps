@@ -15,12 +15,12 @@
 		4B5CB1962143AE46006F676A /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5CB1952143AE46006F676A /* ReportViewController.swift */; };
 		4B9C03582144309C009735AE /* TipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9C03572144309C009735AE /* TipsViewController.swift */; };
 		4B9C035A21444E49009735AE /* Tips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9C035921444E49009735AE /* Tips.swift */; };
-		C7A2012E21438BE800D8D8AC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C7A2012D21438BE800D8D8AC /* GoogleService-Info.plist */; };
 		C7A201302143915800D8D8AC /* PrivateConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A2012F2143915700D8D8AC /* PrivateConstants.swift */; };
 		C7A201322143925700D8D8AC /* MapViewController_David.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A201312143925700D8D8AC /* MapViewController_David.swift */; };
 		C7A201342143928700D8D8AC /* MapViewController_Brian.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A201332143928700D8D8AC /* MapViewController_Brian.swift */; };
 		C7A201362143953700D8D8AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7A201352143953700D8D8AC /* LaunchScreen.storyboard */; };
 		C7A201382143AC1400D8D8AC /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A201372143AC1400D8D8AC /* Report.swift */; };
+		C7A2013B21445ADA00D8D8AC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C7A2013A21445ADA00D8D8AC /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,12 +35,13 @@
 		4B9C03572144309C009735AE /* TipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsViewController.swift; sourceTree = "<group>"; };
 		4B9C035921444E49009735AE /* Tips.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tips.swift; sourceTree = "<group>"; };
 		634F43F9600EEC8247DD4411 /* Pods-foresite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-foresite.debug.xcconfig"; path = "Pods/Target Support Files/Pods-foresite/Pods-foresite.debug.xcconfig"; sourceTree = "<group>"; };
-		C7A2012D21438BE800D8D8AC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C7A2012F2143915700D8D8AC /* PrivateConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateConstants.swift; sourceTree = "<group>"; };
 		C7A201312143925700D8D8AC /* MapViewController_David.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController_David.swift; sourceTree = "<group>"; };
 		C7A201332143928700D8D8AC /* MapViewController_Brian.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController_Brian.swift; sourceTree = "<group>"; };
 		C7A201352143953700D8D8AC /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C7A201372143AC1400D8D8AC /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
+		C7A201392144585200D8D8AC /* foresite.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = foresite.entitlements; sourceTree = "<group>"; };
+		C7A2013A21445ADA00D8D8AC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F4CB3F5BB5A5BDDE9C600FBF /* Pods_foresite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_foresite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -94,6 +95,7 @@
 		4B5CB17E21438603006F676A /* foresite */ = {
 			isa = PBXGroup;
 			children = (
+				C7A201392144585200D8D8AC /* foresite.entitlements */,
 				4B5CB1952143AE46006F676A /* ReportViewController.swift */,
 				4B5CB17F21438603006F676A /* AppDelegate.swift */,
 				4B5CB18121438603006F676A /* MapViewController.swift */,
@@ -106,7 +108,7 @@
 				4B5CB18621438604006F676A /* Assets.xcassets */,
 				C7A201352143953700D8D8AC /* LaunchScreen.storyboard */,
 				4B5CB18B21438604006F676A /* Info.plist */,
-				C7A2012D21438BE800D8D8AC /* GoogleService-Info.plist */,
+				C7A2013A21445ADA00D8D8AC /* GoogleService-Info.plist */,
 				4B9C035921444E49009735AE /* Tips.swift */,
 			);
 			path = foresite;
@@ -147,6 +149,14 @@
 				TargetAttributes = {
 					4B5CB17B21438603006F676A = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -173,8 +183,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7A2012E21438BE800D8D8AC /* GoogleService-Info.plist in Resources */,
 				4B5CB18721438604006F676A /* Assets.xcassets in Resources */,
+				C7A2013B21445ADA00D8D8AC /* GoogleService-Info.plist in Resources */,
 				C7A201362143953700D8D8AC /* LaunchScreen.storyboard in Resources */,
 				4B5CB18521438603006F676A /* Main.storyboard in Resources */,
 			);
@@ -192,6 +202,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-foresite/Pods-foresite-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -200,6 +211,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -401,15 +413,16 @@
 			baseConfigurationReference = 634F43F9600EEC8247DD4411 /* Pods-foresite.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = foresite/foresite.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Q2PZEH4H6R;
+				DEVELOPMENT_TEAM = V4AH655C9C;
 				INFOPLIST_FILE = foresite/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.2DGB.foresite;
+				PRODUCT_BUNDLE_IDENTIFIER = com.brianli101.foresite;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -421,15 +434,16 @@
 			baseConfigurationReference = 2B534DE103FCF6AFC39E214A /* Pods-foresite.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = foresite/foresite.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Q2PZEH4H6R;
+				DEVELOPMENT_TEAM = V4AH655C9C;
 				INFOPLIST_FILE = foresite/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.2DGB.foresite;
+				PRODUCT_BUNDLE_IDENTIFIER = com.brianli101.foresite;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

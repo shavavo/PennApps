@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>495247234962-m3ilj8kfjqc5b8mg3s6u0fcr2b37k7p7.apps.googleusercontent.com</string>
+	<string>495247234962-heoc4mb3hn2i934inp3g34n4lakmioen.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.495247234962-m3ilj8kfjqc5b8mg3s6u0fcr2b37k7p7</string>
+	<string>com.googleusercontent.apps.495247234962-heoc4mb3hn2i934inp3g34n4lakmioen</string>
 	<key>API_KEY</key>
 	<string>AIzaSyBuqRAzXidWsK4OTL8PtfzltZ2rHirgq8o</string>
 	<key>GCM_SENDER_ID</key>
@@ -17,7 +17,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.2DGB.foresite</string>
+	<string>com.brianli101.foresite</string>
 	<key>PROJECT_ID</key>
 	<string>foresite-1234</string>
 	<key>STORAGE_BUCKET</key>
@@ -33,7 +33,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:495247234962:ios:893d508ae0f53828</string>
+	<string>1:495247234962:ios:f0e5b16a244446c0</string>
 	<key>DATABASE_URL</key>
 	<string>https://foresite-1234.firebaseio.com</string>
 </dict>

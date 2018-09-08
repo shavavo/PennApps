@@ -11,6 +11,7 @@ import Firebase
 import GoogleMaps
 import GooglePlaces
 import IQKeyboardManagerSwift
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,8 +22,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        // Request notification access
+        UNUserNotificationCenter.current().delegate = self
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
+            
+        }
+
+        application.registerForRemoteNotifications()
+        
         // Configure Firebase
         FirebaseApp.configure()
+        
+        // Setup Google Maps/Places
         GMSServices.provideAPIKey(PrivateConstants.GoogleMapsAPIKey)
         GMSPlacesClient.provideAPIKey(PrivateConstants.GoogleMapsAPIKey)
         
@@ -41,6 +52,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
 
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        print(userInfo)
+        print("\n\n\n\n wowwwwwzaaa was accessed\n\n\\n\n")
+    }
+    
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
     }
@@ -53,6 +69,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
 }
 
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    func registerNotificationTypes() {
+        // Define the custom actions.
+        let yesAction = UNNotificationAction(identifier: "YES_ACTION",
+                                                title: "yes",
+                                                options: UNNotificationActionOptions(rawValue: 0))
+        let noAction = UNNotificationAction(identifier: "NO_ACTION",
+                                                 title: "no",
+                                                 options: UNNotificationActionOptions(rawValue: 0))
+        // Define the notification type
+        let meetingInviteCategory =
+            UNNotificationCategory(identifier: "MEETING_INVITATION",
+                                   actions: [yesAction, noAction],
+                                   intentIdentifiers: [],
+                                   hiddenPreviewsBodyPlaceholder: "",
+                                   options: .customDismissAction)
+        // Register the notification type.
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.setNotificationCategories([meetingInviteCategory])
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        // https://developer.apple.com/documentation/usernotifications/declaring_your_actionable_notification_types
+        print("yahoo")
+        let snoozeAction = UNNotificationAction(
+            identifier: "snooze.action",
+            title: "Snooze",
+            options: [])
+        
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        <#code#>
+    }
+}
