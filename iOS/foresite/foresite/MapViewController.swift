@@ -30,13 +30,16 @@ class MapViewController: UIViewController {
     
     let DEFAULT_ZOOM: Float = 14
     
+    var reports: [Report] = []
+    
+    var ref: DatabaseReference!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         configureMapView()
         configureLocationManager()
-        
-       
+        configureDatabase()
         
         if(recentlySubmitted != "") {
             let w = UIScreen.main.bounds.width
@@ -53,6 +56,12 @@ class MapViewController: UIViewController {
         }
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        print(reports)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -72,9 +81,13 @@ class MapViewController: UIViewController {
             let userLocationCameraPosition = GMSCameraPosition.camera(withLatitude: (userLocation?.coordinate.latitude)!, longitude: (userLocation?.coordinate.longitude)!, zoom: DEFAULT_ZOOM)
             mapView.animate(to: userLocationCameraPosition)
         }
-
+        
         DispatchQueue.main.async {
             self.mapView.isMyLocationEnabled = true
         }
+    }
+    
+    func configureDatabase() {
+        ref = Database.database().reference()
     }
 }

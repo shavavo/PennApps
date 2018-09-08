@@ -44,6 +44,82 @@ class Report {
         self.comment = comment
     }
     
+    init(fromDictionary dict: [String: Any]) {
+        if let latitude = dict["latitude"] as? CLLocationDegrees {
+            self.latitude = latitude
+        }
+        
+        if let longitude = dict["longitude"] as? CLLocationDegrees {
+            self.longitude = longitude
+        }
+        
+        if let time = dict["time"] as? String {
+            self.time = time
+        }
+        
+        if let disasterType = dict["disasterType"] as? String {
+            switch disasterType {
+            case "flood":
+                self.disasterType = .flood
+            case "fire":
+                self.disasterType = .fire
+            case "tsunami":
+                self.disasterType = .tsunami
+            case "earthquake":
+                self.disasterType = .earthquake
+            case "other":
+                self.disasterType = .other
+                if let otherDescription = dict["otherDescription"] as? String {
+                    self.otherDescription = otherDescription
+                }
+            default:
+                print("error: defaulted")
+            }
+        }
+        
+        if let comment = dict["comment"] as? String {
+            self.comment = comment
+        }
+    }
+    
+    init(fromSnapshot snapshot: DataSnapshot) {
+        if let latitude = snapshot.childSnapshot(forPath: "latitude").value as? CLLocationDegrees {
+            self.latitude = latitude
+        }
+        
+        if let longitude = snapshot.childSnapshot(forPath: "longitude").value as? CLLocationDegrees {
+            self.longitude = longitude
+        }
+        
+        if let time = snapshot.childSnapshot(forPath: "time").value as? String {
+            self.time = time
+        }
+        
+        if let disasterType = snapshot.childSnapshot(forPath: "disasterType").value as? String {
+            switch disasterType {
+            case "flood":
+                self.disasterType = .flood
+            case "fire":
+                self.disasterType = .fire
+            case "tsunami":
+                self.disasterType = .tsunami
+            case "earthquake":
+                self.disasterType = .earthquake
+            case "other":
+                self.disasterType = .other
+                if let otherDescription = snapshot.childSnapshot(forPath: "otherDescription").value as? String {
+                    self.otherDescription = otherDescription
+                }
+            default:
+                print("error: defaulted")
+            }
+        }
+        
+        if let comment = snapshot.childSnapshot(forPath: "comment").value as? String {
+            self.comment = comment
+        }
+    }
+    
     func toDict() -> [String: Any] {
         return [
             "latitude" : latitude,
