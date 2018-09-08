@@ -16,9 +16,14 @@ class MapViewController: UIViewController {
 
     @IBOutlet var mapView: GMSMapView!
     
+    var locationManager: CLLocationManager!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        configureMapView()
+        configureLocationManager()
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,6 +32,12 @@ class MapViewController: UIViewController {
     }
     
     func configureMapView() {
-    
+        mapView.delegate = self
+        mapView.settings.myLocationButton = true
+        mapView.settings.compassButton = true
+        
+        DispatchQueue.main.async {
+            self.mapView.isMyLocationEnabled = true
+        }
     }
 }
