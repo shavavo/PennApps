@@ -6,9 +6,16 @@
 //  Copyright © 2018 2DGB. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import CoreLocation
+
 import GoogleMaps
+import GooglePlaces
+
+import FirebaseCore
+import Firebase
+
+import GeoFire
 
 extension MapViewController: CLLocationManagerDelegate {
     
@@ -21,6 +28,16 @@ extension MapViewController: CLLocationManagerDelegate {
         locationManager.requestAlwaysAuthorization()
         
         locationManager.startUpdatingLocation()
+        
+        DispatchQueue.global(qos: .background).async {
+            sleep(4)
+            print("Active after 4 sec, and doesn't block main")
+            self.generateData()
+            DispatchQueue.main.async{
+                //do stuff in the main thread here
+            }
+        }
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -39,11 +56,29 @@ extension MapViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        // locations.last
-
+        userLocation = locations.last
     }
 }
 
 extension MapViewController: GMSMapViewDelegate {
     
+}
+
+// MARK: -Generate Data
+extension MapViewController {
+    
+    func generateData() {
+        let geofireRef = Database.database().reference().child("reports")
+        
+        let reportRef = geofireRef.childByAutoId()
+        let reportAutoID = reportRef.key
+        
+        let geoFire = GeoFire(firebaseRef: geofireRef)
+        
+        geoFire.setLocation(userLocation!, forKey: reportAutoID)
+        let rep = Report(latitude: (userLocation?.coordinate.latitude)!, longitude: (userLocation?.coordinate.longitude)!, time: Date(), disasterType: .fire, comment: "mild house fire")
+        reportRef.updateChildValues(rep.toDict())
+        //let geofireRef = FIRDatabase.database().reference()
+        //let geoFire = GeoFire(firebaseRef: geofireRef)
+    }
 }

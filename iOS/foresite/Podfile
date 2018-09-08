@@ -9,5 +9,7 @@ target 'foresite' do
   pod 'GoogleMaps'
   pod 'GooglePlaces'
   pod 'Firebase/Core'
+  pod 'Firebase/Database'
+  pod 'GeoFire'
 
 end

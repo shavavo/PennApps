@@ -12,12 +12,17 @@ import CoreLocation
 import GoogleMaps
 import GooglePlaces
 
+import FirebaseCore
+import Firebase
+
 class MapViewController: UIViewController {
 
     @IBOutlet var mapView: GMSMapView!
     
     var locationManager: CLLocationManager!
+    var userLocation: CLLocation? = nil
     
+    let DEFAULT_ZOOM: Float = 14
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,10 +37,20 @@ class MapViewController: UIViewController {
     }
     
     func configureMapView() {
+        
         mapView.delegate = self
         mapView.settings.myLocationButton = true
         mapView.settings.compassButton = true
         
+        let defaultCameraPosition = GMSCameraPosition.camera(withLatitude: 39.952326, longitude: -75.191075, zoom: DEFAULT_ZOOM)
+        
+        mapView.animate(to: defaultCameraPosition)
+        
+        if (userLocation != nil) {
+            let userLocationCameraPosition = GMSCameraPosition.camera(withLatitude: (userLocation?.coordinate.latitude)!, longitude: (userLocation?.coordinate.longitude)!, zoom: DEFAULT_ZOOM)
+            mapView.animate(to: userLocationCameraPosition)
+        }
+
         DispatchQueue.main.async {
             self.mapView.isMyLocationEnabled = true
         }
