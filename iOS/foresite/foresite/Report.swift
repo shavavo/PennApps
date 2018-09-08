@@ -25,13 +25,15 @@ class Report {
     var time: String!
     var disasterType: DisasterTypes!
     var comment: String!
+    var otherDescription: String!
     
     init() {
         latitude = 0
         longitude = 0
-        time = ""
+        time = Date().toISO8601()
         disasterType = .other
         comment = ""
+        otherDescription = ""
     }
     
     init(latitude: CLLocationDegrees, longitude: CLLocationDegrees, time: Date, disasterType: DisasterTypes, comment: String) {
@@ -48,7 +50,8 @@ class Report {
             "longitude" : longitude,
             "time" : time,
             "disasterType" : disasterType.rawValue,
-            "comment": comment
+            "comment" : comment,
+            "otherDescription" : otherDescription
         ]
     }
 }

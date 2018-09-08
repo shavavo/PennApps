@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 import GooglePlacePicker
+import Firebase
+import GeoFire
 
 
 class ReportViewController: UIViewController, GMSPlacePickerViewControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
@@ -34,22 +36,40 @@ class ReportViewController: UIViewController, GMSPlacePickerViewControllerDelega
     
     @IBAction func submitReport(_ sender: Any) {
         
+        var newReport = Report()
+        //Report(latitude: <#T##CLLocationDegrees#>, longitude: <#T##CLLocationDegrees#>, time: <#T##Date#>, disasterType: <#T##Report.DisasterTypes#>, comment: <#T##String#>)
+        
+        
+        
+        
+
+        newReport.latitude = place?.coordinate.latitude
+        newReport.longitude = place?.coordinate.longitude
         
         var type = pickerData[picker.selectedRow(inComponent: 0)]
-        if(type=="Other") {
-            type = customType.text!
+        switch type {
+        case "Flood":
+            newReport.disasterType = .flood
+        case "Fire":
+            newReport.disasterType = .fire
+        case "Earthquake":
+            newReport.disasterType = .earthquake
+        case "Tsunami":
+            newReport.disasterType = .tsunami
+        case "Other":
+            newReport.disasterType = .other
+            newReport.otherDescription = customType.text!
+        default:
+            print("error: defaulted")
         }
         
-        let location = place
-        let comments = commentTextField.text
-        let currentDateTime = Date()
+        newReport.comment = commentTextField.text
         
-        // TODO: Hookup to db
+        uploadReport(report: newReport)
         
         performSegue(withIdentifier: "submitReturn", sender: self)
     }
     
-   
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "submitReturn" {
@@ -61,7 +81,7 @@ class ReportViewController: UIViewController, GMSPlacePickerViewControllerDelega
     }
     
     
-    var place:GMSPlace? = nil;
+    var place:GMSPlace? = nil
     var pickerData: [String] = [String]()
     
     override func viewDidLoad() {
@@ -140,4 +160,20 @@ class ReportViewController: UIViewController, GMSPlacePickerViewControllerDelega
     
     
     
+}
+
+// MARK: -Firebase data upload
+extension ReportViewController {
+    func uploadReport(report: Report) {
+        let geofireRef = Database.database().reference().child("reports")
+        
+        let reportRef = geofireRef.childByAutoId()
+        let reportAutoID = reportRef.key
+        
+        let geoFire = GeoFire(firebaseRef: geofireRef)
+        
+        geoFire.setLocation(CLLocation(latitude: (place?.coordinate.latitude)!, longitude: (place?.coordinate.longitude)!), forKey: reportAutoID)
+        
+        reportRef.updateChildValues(report.toDict())
+    }
 }
