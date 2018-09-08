@@ -20,7 +20,7 @@ import GeoFire
 extension MapViewController: CLLocationManagerDelegate {
     
     func configureLocationManager() {
-        print("Called\n\n\n")
+//        print("Called\n\n\n")
         // initialize locationManager
         locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -42,7 +42,7 @@ extension MapViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        print("Authorization status changed")
+//        print("Authorization status changed")
         if (status == .authorizedWhenInUse) {
             
         } else if (status == .authorizedAlways) {
@@ -89,10 +89,11 @@ extension MapViewController {
 // MARK: -GeoQuery
 extension MapViewController {
     func queryCircle(withCenter location: CLLocation, radius: Double) {
-        print("\nthe lcoation is ")
-        print(location)
+//        print("\nthe lcoation is ")
+//        print(location)
         // clear previous values stored in reports
         reports = []
+        reportIDs = []
         
         let geofireReportsRef = Database.database().reference().child("reports")
         let geoFire = GeoFire(firebaseRef: geofireReportsRef)
@@ -101,14 +102,21 @@ extension MapViewController {
         // Query locations at center with a radius of km
         var circleQuery = geoFire.query(at: center, withRadius: radius)
         
+        
+        
+        
+        
+        
         // TODO: impose limitations on query size
         
         var queryHandle = circleQuery.observe(.keyEntered, with: { (key: String!, location: CLLocation!) in
             self.ref.child("reports").child(key).observe(.value, with: { (snapshot) in
+                
+                self.reportIDs.append(key)
                 self.reports.append(Report(fromSnapshot: snapshot))
-                print("\ndata extracted")
+//                print("\ndata extracted")
             }) { (error) in
-                print(error.localizedDescription)
+//                print(error.localizedDescription)
             }
             /*
             ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -124,6 +132,14 @@ extension MapViewController {
             */
             
         })
+        
+        circleQuery.observeReady {
+            // All initial data has been loaded and events have been fired!
+            self.addMarkers()
+        }
+        
+        
+        
         
         /*
         // Query location by region

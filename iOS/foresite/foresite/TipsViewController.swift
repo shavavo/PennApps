@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+
 class TipsViewController: UIViewController {
     @IBOutlet weak var tipsTitle: UILabel!
     
@@ -16,10 +17,16 @@ class TipsViewController: UIViewController {
     
     @IBOutlet weak var afterTips: UILabel!
     
+    @IBOutlet weak var link: UILabel!
+    
     var type:String = "";
     
     override func viewDidLoad() {
-        tipsTitle.text = type
+        print(type)
         
+        tipsTitle.text = type
+        duringTips.text = Tips.tips[type]![1]
+        afterTips.text = Tips.tips[type]![2]
+        link.text = Tips.tips[type]![3]
     }
 }
