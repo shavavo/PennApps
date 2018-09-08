@@ -29,6 +29,7 @@ extension MapViewController: CLLocationManagerDelegate {
         
         locationManager.startUpdatingLocation()
         
+        
         DispatchQueue.global(qos: .background).async {
             sleep(4)
             print("Active after 4 sec, and doesn't block main")

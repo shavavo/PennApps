@@ -10,6 +10,6 @@ import Foundation
 
 extension MapViewController {
     func reportButtonPressed() {
-        
+        generateData()
     }
 }
