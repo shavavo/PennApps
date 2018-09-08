@@ -15,6 +15,8 @@ import GooglePlaces
 import FirebaseCore
 import Firebase
 
+import Toast_Swift
+
 class MapViewController: UIViewController {
 
     @IBOutlet var mapView: GMSMapView!
@@ -24,6 +26,8 @@ class MapViewController: UIViewController {
     var locationManager: CLLocationManager!
     var userLocation: CLLocation? = nil
     
+    var recentlySubmitted:String? = ""
+    
     let DEFAULT_ZOOM: Float = 14
     
     override func viewDidLoad() {
@@ -31,6 +35,22 @@ class MapViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         configureMapView()
         configureLocationManager()
+        
+       
+        
+        if(recentlySubmitted != "") {
+            let w = UIScreen.main.bounds.width
+            
+            self.view.makeToast("Tap here to read about what you can do to protect yourself in a " + recentlySubmitted!.lowercased(), duration: 8.0, point: CGPoint(x: w/2, y: 110.0), title: "Report Submitted", image: nil) { didTap in
+                if didTap {
+                    print("completion from tap")
+                } else {
+                    print("completion without tap")
+                }
+            }
+            
+            
+        }
     }
 
     override func didReceiveMemoryWarning() {

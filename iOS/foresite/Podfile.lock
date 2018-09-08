@@ -58,12 +58,14 @@ PODS:
   - "GoogleUtilities/NSData+zlib (5.2.3)"
   - GoogleUtilities/Reachability (5.2.3):
     - GoogleUtilities/Logger
+  - IQKeyboardManagerSwift (6.1.1)
   - leveldb-library (1.20)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - Toast-Swift (3.0.1)
 
 DEPENDENCIES:
   - Firebase/Core
@@ -72,6 +74,8 @@ DEPENDENCIES:
   - GoogleMaps
   - GooglePlacePicker
   - GooglePlaces
+  - IQKeyboardManagerSwift
+  - Toast-Swift (~> 3.0.1)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -86,8 +90,10 @@ SPEC REPOS:
     - GooglePlacePicker
     - GooglePlaces
     - GoogleUtilities
+    - IQKeyboardManagerSwift
     - leveldb-library
     - nanopb
+    - Toast-Swift
 
 SPEC CHECKSUMS:
   Firebase: 734a4f92957aa6c40e7ae3fda3d9359e1890aa87
@@ -101,9 +107,11 @@ SPEC CHECKSUMS:
   GooglePlacePicker: 59ea44db173c58486ad6123993e81feefcbce9c3
   GooglePlaces: 3d06e6c99654545b4738ce49648745779c25f2ef
   GoogleUtilities: 6f681e27050c5e130325e89fa0316dfca826f954
+  IQKeyboardManagerSwift: 977affaeb4d6e971975c7790a6850f31d38f1207
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
 
-PODFILE CHECKSUM: ced178a6b3663bb3f6f1320df16195240117fa82
+PODFILE CHECKSUM: c8d54ffcc560a16cf7640d382d2bc2af4b4e840c
 
 COCOAPODS: 1.5.3

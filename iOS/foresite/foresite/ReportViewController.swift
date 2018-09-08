@@ -17,6 +17,8 @@ class ReportViewController: UIViewController, GMSPlacePickerViewControllerDelega
     @IBOutlet weak var customType: UITextField!
     @IBOutlet weak var locationPicker: UISegmentedControl!
     @IBOutlet weak var address: UILabel!
+    @IBOutlet weak var commentTextField: UITextField!
+    
     
     @IBAction func locationTypeChanged(_ sender: Any) {
         if(locationPicker.selectedSegmentIndex==1) {
@@ -25,10 +27,40 @@ class ReportViewController: UIViewController, GMSPlacePickerViewControllerDelega
             
             placePicker.delegate = self
             present(placePicker, animated: true, completion: nil)
+        } else {
+            getCurrentPlace()
         }
     }
     
-    //TODO: replace with user location
+    @IBAction func submitReport(_ sender: Any) {
+        
+        
+        var type = pickerData[picker.selectedRow(inComponent: 0)]
+        if(type=="Other") {
+            type = customType.text!
+        }
+        
+        let location = place
+        let comments = commentTextField.text
+        let currentDateTime = Date()
+        
+        // TODO: Hookup to db
+        
+        performSegue(withIdentifier: "submitReturn", sender: self)
+    }
+    
+   
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "submitReturn" {
+            if let destVC = segue.destination as? MapViewController {
+                print("PLES")
+                destVC.recentlySubmitted = pickerData[picker.selectedRow(inComponent: 0)]
+            }
+        }
+    }
+    
+    
     var place:GMSPlace? = nil;
     var pickerData: [String] = [String]()
     
@@ -38,6 +70,23 @@ class ReportViewController: UIViewController, GMSPlacePickerViewControllerDelega
         picker.selectRow(2, inComponent: 0, animated: false)
         customType.isHidden = true
         
+        getCurrentPlace()
+    }
+    
+    func getCurrentPlace() {
+        let placesClient = GMSPlacesClient()
+        placesClient.currentPlace(callback: { (placeLikelihoods, error) -> Void in
+            if error != nil {
+                // Handle error in some way.
+            }
+            
+            if let placeLikelihood = placeLikelihoods?.likelihoods.first {
+                let place = placeLikelihood.place
+                // Do what you want with the returned GMSPlace.
+                self.place = place
+                self.updateAddressLabel(place: place)
+            }
+        })
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -67,13 +116,7 @@ class ReportViewController: UIViewController, GMSPlacePickerViewControllerDelega
     func placePicker(_ viewController: GMSPlacePickerViewController, didPick place: GMSPlace) {
         // Dismiss the place picker, as it cannot dismiss itself.
         viewController.dismiss(animated: true, completion: nil)
-        if let addressText = place.formattedAddress {
-            address.text = addressText
-        } else {
-            address.text = String(place.coordinate.latitude) + ", " + String(place.coordinate.longitude)
-        }
-        
-        
+        updateAddressLabel(place: place)
         self.place = place
     }
     
@@ -82,6 +125,14 @@ class ReportViewController: UIViewController, GMSPlacePickerViewControllerDelega
         viewController.dismiss(animated: true, completion: nil)
         locationPicker.selectedSegmentIndex = 0
         
+    }
+    
+    func updateAddressLabel(place:GMSPlace) {
+        if let addressText = place.formattedAddress {
+            address.text = addressText
+        } else {
+            address.text = String(place.coordinate.latitude) + ", " + String(place.coordinate.longitude)
+        }
     }
     
     

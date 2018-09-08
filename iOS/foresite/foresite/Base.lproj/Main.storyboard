@@ -102,7 +102,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RYE-pd-Rr4">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Additional Details" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RYE-pd-Rr4">
                                 <rect key="frame" x="27" y="440" width="320" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -134,7 +134,7 @@
                                             <action selector="locationTypeChanged:" destination="mql-cT-I5u" eventType="valueChanged" id="pAL-mw-9ew"/>
                                         </connections>
                                     </segmentedControl>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uaA-NV-lHZ">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uaA-NV-lHZ">
                                         <rect key="frame" x="0.0" y="33" width="275" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -142,17 +142,35 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IKM-uh-3dj">
+                                <rect key="frame" x="20" y="617" width="48" height="30"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="chm-qT-brc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L0c-at-2PX">
+                                <rect key="frame" x="306" y="617" width="49" height="30"/>
+                                <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="submitReport:" destination="mql-cT-I5u" eventType="touchUpInside" id="gaw-Oi-Wl8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="dlx-gS-EDS" firstAttribute="leading" secondItem="dyZ-yZ-FmQ" secondAttribute="leading" constant="27" id="2x4-fu-10i"/>
                             <constraint firstItem="X3u-YV-6A6" firstAttribute="top" secondItem="uvO-OH-jgw" secondAttribute="bottom" constant="30" id="3ie-sO-NKD"/>
                             <constraint firstItem="zxu-IB-P4M" firstAttribute="leading" secondItem="dyZ-yZ-FmQ" secondAttribute="leading" constant="148" id="45l-lI-Lz8"/>
+                            <constraint firstItem="IKM-uh-3dj" firstAttribute="leading" secondItem="dyZ-yZ-FmQ" secondAttribute="leading" constant="20" id="4Z0-gE-x3G"/>
                             <constraint firstItem="a6G-jo-1MY" firstAttribute="leading" secondItem="dyZ-yZ-FmQ" secondAttribute="leading" constant="27" id="4zi-tq-7Wo"/>
                             <constraint firstItem="X3u-YV-6A6" firstAttribute="leading" secondItem="dyZ-yZ-FmQ" secondAttribute="leading" constant="141" id="7Ih-dR-m5r"/>
                             <constraint firstItem="dyZ-yZ-FmQ" firstAttribute="trailing" secondItem="gZr-64-xVc" secondAttribute="trailing" constant="165" id="8k9-Xw-YC1"/>
                             <constraint firstItem="a6G-jo-1MY" firstAttribute="top" secondItem="dyZ-yZ-FmQ" secondAttribute="top" constant="27" id="BHy-UF-59N"/>
                             <constraint firstItem="gZr-64-xVc" firstAttribute="leading" secondItem="dyZ-yZ-FmQ" secondAttribute="leading" constant="165" id="DyS-yS-8w8"/>
+                            <constraint firstItem="dyZ-yZ-FmQ" firstAttribute="trailing" secondItem="L0c-at-2PX" secondAttribute="trailing" constant="20" id="Eeu-Ml-ozE"/>
                             <constraint firstItem="dyZ-yZ-FmQ" firstAttribute="trailing" secondItem="RYE-pd-Rr4" secondAttribute="trailing" constant="28" id="FV0-21-mHG"/>
                             <constraint firstItem="dyZ-yZ-FmQ" firstAttribute="trailing" secondItem="a6G-jo-1MY" secondAttribute="trailing" constant="28" id="Hv0-se-P8S"/>
                             <constraint firstItem="gZr-64-xVc" firstAttribute="top" secondItem="a6G-jo-1MY" secondAttribute="bottom" constant="25" id="KJZ-vL-8wO"/>
@@ -164,6 +182,8 @@
                             <constraint firstItem="RYE-pd-Rr4" firstAttribute="leading" secondItem="dyZ-yZ-FmQ" secondAttribute="leading" constant="27" id="hrx-mV-QvR"/>
                             <constraint firstItem="dyZ-yZ-FmQ" firstAttribute="trailing" secondItem="X3u-YV-6A6" secondAttribute="trailing" constant="141" id="nll-cU-KNV"/>
                             <constraint firstItem="RYE-pd-Rr4" firstAttribute="top" secondItem="X3u-YV-6A6" secondAttribute="bottom" constant="5" id="pLx-gh-JU5"/>
+                            <constraint firstItem="dyZ-yZ-FmQ" firstAttribute="bottom" secondItem="L0c-at-2PX" secondAttribute="bottom" constant="20" id="rR5-dH-J4b"/>
+                            <constraint firstItem="dyZ-yZ-FmQ" firstAttribute="bottom" secondItem="IKM-uh-3dj" secondAttribute="bottom" constant="20" id="uZg-xE-3aA"/>
                             <constraint firstItem="zxu-IB-P4M" firstAttribute="top" secondItem="dlx-gS-EDS" secondAttribute="bottom" constant="15" id="zQe-JN-f95"/>
                             <constraint firstItem="dyZ-yZ-FmQ" firstAttribute="trailing" secondItem="zxu-IB-P4M" secondAttribute="trailing" constant="148" id="zY2-xi-2zA"/>
                         </constraints>
@@ -171,9 +191,11 @@
                     </view>
                     <connections>
                         <outlet property="address" destination="uaA-NV-lHZ" id="mfg-z0-thB"/>
+                        <outlet property="commentTextField" destination="RYE-pd-Rr4" id="Eze-lL-zSO"/>
                         <outlet property="customType" destination="rGs-Vq-aaW" id="37j-IB-vVy"/>
                         <outlet property="locationPicker" destination="623-fb-3Kv" id="DnD-ws-eeh"/>
                         <outlet property="picker" destination="sow-DA-RTH" id="kWm-fj-jfn"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="submitReturn" id="QAC-qF-LHV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lmt-X6-sb2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -181,4 +203,7 @@
             <point key="canvasLocation" x="808.79999999999995" y="115.59220389805098"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="QAC-qF-LHV"/>
+    </inferredMetricsTieBreakers>
 </document>
