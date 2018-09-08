@@ -15,6 +15,8 @@ import GooglePlaces
 class MapViewController: UIViewController {
 
     @IBOutlet var mapView: GMSMapView!
+
+    
     
     var locationManager: CLLocationManager!
     
