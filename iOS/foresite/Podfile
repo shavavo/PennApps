@@ -8,8 +8,11 @@ target 'foresite' do
   # Pods for foresite
   pod 'GoogleMaps'
   pod 'GooglePlaces'
+  pod 'GooglePlacePicker'
   pod 'Firebase/Core'
   pod 'Firebase/Database'
   pod 'GeoFire'
+  pod 'IQKeyboardManagerSwift'
+  pod 'Toast-Swift', '~> 3.0.1'
 
 end
