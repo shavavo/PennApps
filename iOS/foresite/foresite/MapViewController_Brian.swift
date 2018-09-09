@@ -71,16 +71,17 @@ extension MapViewController: GMSMapViewDelegate {
     /*
      custom function for demos, drops points at tap
      */
-    
+    /*
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         var demoReport = Report()
         demoReport.disasterType = .flood
         demoReport.latitude = coordinate.latitude
         demoReport.longitude = coordinate.longitude
+        demoReport.hasSeen = false
         demoReport.upload()
         print("did tap at \(coordinate)")
     }
-    
+    */
 }
 
 // MARK: -Generate Data
@@ -169,8 +170,7 @@ extension MapViewController {
             let report = Report(fromSnapshot: snapshot)
             self.reports.append(report)
             
-   
-    
+
             let position = CLLocationCoordinate2D(latitude: report.latitude, longitude: report.longitude)
             let marker = GMSMarker(position: position)
             
