@@ -159,6 +159,15 @@ class ReportViewController: UIViewController, GMSPlacePickerViewControllerDelega
 // MARK: -Firebase data upload
 extension ReportViewController {
     func uploadReport(report: Report) {
+        
+        let dbRef = Database.database().reference().child("reports")
+        let reportRef = dbRef.childByAutoId()
+        let reportAutoID = reportRef.key
+        report.uniqueID = reportAutoID
+        reportRef.updateChildValues(report.toDict())
+        
+        // GeoFire implementation
+        /*
         let geofireRef = Database.database().reference().child("reports")
         
         let reportRef = geofireRef.childByAutoId()
@@ -170,5 +179,6 @@ extension ReportViewController {
         geoFire.setLocation(CLLocation(latitude: report.latitude, longitude: report.longitude), forKey: reportAutoID)
         
         reportRef.updateChildValues(report.toDict())
+         */
     }
 }
