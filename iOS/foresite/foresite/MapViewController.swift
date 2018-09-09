@@ -51,7 +51,7 @@ class MapViewController: UIViewController {
             let w = UIScreen.main.bounds.width
             
             if(recentlySubmitted != "Other") {
-                self.view.makeToast("Tap here to read about what you can do to protect yourself in a " + recentlySubmitted!.lowercased(), duration: 8.0, point: CGPoint(x: w/2, y: 100), title: "Report Submitted", image: nil) { didTap in
+                self.view.makeToast("Tap here to read about what you can do to protect yourself in a " + recentlySubmitted!.lowercased(), duration: 8.0, point: CGPoint(x: w/2, y: 80), title: "Report Submitted", image: nil) { didTap in
                     if didTap {
                         self.performSegue(withIdentifier: "tips", sender: self)
                     } else {
@@ -68,20 +68,31 @@ class MapViewController: UIViewController {
         dropdown.optionArray = ["Earthquake", "Fire", "Flood", "Tsunami"]
         dropdown.optionIds = [0,1,2,3]
         dropdown.isSearchEnable = false
-        dropdown.selectedRowColor = .black
-        dropdown.rowHeight = 75
-        dropdown.listHeight = 300
+        dropdown.selectedRowColor = .lightGray
+        dropdown.rowHeight = 50
+        dropdown.listHeight = 200
+        dropdown.text = "Resources"
+        dropdown.didSelect{(selectedText , index ,id) in
+            self.recentlySubmitted = selectedText
+            self.performSegue(withIdentifier: "tips", sender: "resources")
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "tips" {
             if let destVC = segue.destination as? TipsViewController {
                 destVC.type = recentlySubmitted!
+                
+                if sender as! String=="resources" {
+                    destVC.showBefore=true;
+                }
             }
         }
         else if segue.identifier == "newReport" {
             if let destVC = segue.destination as? ReportViewController {
                 destVC.userLocation = self.userLocation
+                
+                
             }
         }
     }
