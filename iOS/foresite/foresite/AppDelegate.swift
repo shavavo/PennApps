@@ -12,6 +12,8 @@ import GoogleMaps
 import GooglePlaces
 import IQKeyboardManagerSwift
 import UserNotifications
+import UserNotificationsUI
+import FirebaseMessaging
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -29,6 +31,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         application.registerForRemoteNotifications()
+        registerNotificationTypes()
+        
+        // Messaging init for accessing FCM registrationToken
+        Messaging.messaging().delegate = self
         
         // Configure Firebase
         FirebaseApp.configure()
@@ -54,7 +60,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         print(userInfo)
+        print(userInfo["data"])
         print("\n\n\n\n wowwwwwzaaa was accessed\n\n\\n\n")
+        print()
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -82,28 +90,74 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                                                  title: "no",
                                                  options: UNNotificationActionOptions(rawValue: 0))
         // Define the notification type
-        let meetingInviteCategory =
-            UNNotificationCategory(identifier: "MEETING_INVITATION",
+        let nearbyReportNotification =
+            UNNotificationCategory(identifier: "NEARBY_REPORT_NOTIFICATION",
                                    actions: [yesAction, noAction],
                                    intentIdentifiers: [],
                                    hiddenPreviewsBodyPlaceholder: "",
                                    options: .customDismissAction)
+        
         // Register the notification type.
         let notificationCenter = UNUserNotificationCenter.current()
-        notificationCenter.setNotificationCategories([meetingInviteCategory])
+        notificationCenter.setNotificationCategories([nearbyReportNotification])
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         // https://developer.apple.com/documentation/usernotifications/declaring_your_actionable_notification_types
         print("yahoo")
-        let snoozeAction = UNNotificationAction(
-            identifier: "snooze.action",
-            title: "Snooze",
-            options: [])
-        
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        <#code#>
+        
+        // Get the meeting ID from the original notification.
+        let userInfo = response.notification.request.content.userInfo
+        
+        if response.notification.request.content.categoryIdentifier ==
+            "NEARBY_REPORT_NOTIFICATION" {
+            // Retrieve the meeting details.
+            let meetingID = userInfo["MEETING_ID"] as! String
+            let userID = userInfo["USER_ID"] as! String
+            
+            switch response.actionIdentifier {
+            case "YES_ACTION":
+                print("\nthe user responded yes")
+                break
+            case "NO_ACTION":
+                print("\nthe user responded no")
+                break
+            case UNNotificationDefaultActionIdentifier,
+                 UNNotificationDismissActionIdentifier:
+                print("\nthe user declined response")
+                break
+            default:
+                break
+            }
+        }
+        else {
+            // Handle other notification types...
+        }
+        
+        // Always call the completion handler when done.
+        completionHandler()
+    }
+}
+
+extension AppDelegate: MessagingDelegate {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        let fcmTokensRef = Database.database().reference().child("fcmTokens")
+        fcmTokensRef.updateChildValues(["\(fcmToken)": "\(fcmToken)"])
+        
+        // get fcm token
+        // https://firebase.google.com/docs/cloud-messaging/ios/client
+        /*
+         InstanceID.instanceID().instanceID { (result, error) in
+         if let error = error {
+         print("Error fetching remote instange ID: \(error)")
+         } else if let result = result {
+         print("Remote instance ID token: \(result.token)")
+         self.instanceIDTokenMessage.text  = "Remote InstanceID token: \(result.token)"
+         }
+         }
+         */
     }
 }

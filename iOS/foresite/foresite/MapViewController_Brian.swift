@@ -101,12 +101,7 @@ extension MapViewController {
         let center = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         // Query locations at center with a radius of km
         var circleQuery = geoFire.query(at: center, withRadius: radius)
-        
-        
-        
-        
-        
-        
+
         // TODO: impose limitations on query size
         
         var queryHandle = circleQuery.observe(.keyEntered, with: { (key: String!, location: CLLocation!) in
