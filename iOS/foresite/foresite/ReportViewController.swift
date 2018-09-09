@@ -147,10 +147,6 @@ class ReportViewController: UIViewController, GMSPlacePickerViewControllerDelega
     
     
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        userLocation = locations.last
-    }
-    
 }
 
 // MARK: -Firebase data upload
