@@ -44,6 +44,8 @@ class MapViewController: UIViewController {
         configureLocationManager()
 
         configureDatabase()
+        
+        beginGlobalQuery()
 
         if(recentlySubmitted != "") {
             let w = UIScreen.main.bounds.width
