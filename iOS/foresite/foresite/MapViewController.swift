@@ -16,6 +16,7 @@ import FirebaseCore
 import Firebase
 
 import Toast_Swift
+import iOSDropDown
 
 class MapViewController: UIViewController {
 
@@ -30,11 +31,10 @@ class MapViewController: UIViewController {
     let DEFAULT_ZOOM: Float = 14
     
     var reports: [Report] = []
-    var reportIDs: [String] = []
-    var seenReportIDs = NSMutableSet()
     
     var ref: DatabaseReference!
     
+    @IBOutlet weak var dropdown: DropDown!
     
     
     override func viewDidLoad() {
@@ -51,7 +51,7 @@ class MapViewController: UIViewController {
             let w = UIScreen.main.bounds.width
             
             if(recentlySubmitted != "Other") {
-                self.view.makeToast("Tap here to read about what you can do to protect yourself in a " + recentlySubmitted!.lowercased(), duration: 8.0, point: CGPoint(x: w/2, y: 100), title: "Report Submitted", image: nil) { didTap in
+                self.view.makeToast("Tap here to read about what you can do to protect yourself in a " + recentlySubmitted!.lowercased(), duration: 8.0, point: CGPoint(x: w/2, y: 80), title: "Report Submitted", image: nil) { didTap in
                     if didTap {
                         self.performSegue(withIdentifier: "tips", sender: self)
                     } else {
@@ -63,19 +63,36 @@ class MapViewController: UIViewController {
             }
         }
         
-        seenReportIDs.removeAllObjects()
+
         
+        dropdown.optionArray = ["Earthquake", "Fire", "Flood", "Tsunami"]
+        dropdown.optionIds = [0,1,2,3]
+        dropdown.isSearchEnable = false
+        dropdown.selectedRowColor = .lightGray
+        dropdown.rowHeight = 50
+        dropdown.listHeight = 200
+        dropdown.text = "Resources"
+        dropdown.didSelect{(selectedText , index ,id) in
+            self.recentlySubmitted = selectedText
+            self.performSegue(withIdentifier: "tips", sender: "resources")
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "tips" {
             if let destVC = segue.destination as? TipsViewController {
                 destVC.type = recentlySubmitted!
+                
+                if sender as! String=="resources" {
+                    destVC.showBefore=true;
+                }
             }
         }
         else if segue.identifier == "newReport" {
             if let destVC = segue.destination as? ReportViewController {
                 destVC.userLocation = self.userLocation
+                
+                
             }
         }
     }
@@ -113,33 +130,5 @@ class MapViewController: UIViewController {
         ref = Database.database().reference()
     }
     
-    func addMarkers() {
-        print(reports.count)
-        
-        for x in 0..<reports.count {
-            if(!seenReportIDs.contains(reportIDs[x])) {
 
-                var report = reports[x]
-
-                print("ADDED MARKER")
-
-                let position = CLLocationCoordinate2D(latitude: report.latitude, longitude: report.longitude)
-                let marker = GMSMarker(position: position)
-
-                let markerImage = UIImage(named: report.disasterType.rawValue)!
-                let markerView = UIImageView(frame: CGRect(x:0, y:0, width:50, height:50))
-                markerView.image = markerImage
-
-                marker.iconView = markerView
-                marker.tracksViewChanges = false
-                marker.map = mapView
-                marker.title = report.comment
-         
-               
-                seenReportIDs.add(reportIDs[x])
-
-            }
-
-        }
-    }
 }
