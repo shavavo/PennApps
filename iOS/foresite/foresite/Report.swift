@@ -199,15 +199,16 @@ extension Report {
     func upload() {
         print(self)
         print("\nwill attempt to upload\n")
-        /*
+        
         let dbRef = Database.database().reference().child("reports")
         let reportRef = dbRef.childByAutoId()
         let reportAutoID = reportRef.key
         self.uniqueID = reportAutoID
         reportRef.updateChildValues(self.toDict())
-        */
+ 
         
         // GeoCode Implementation
+        /*
         let geofireRef = Database.database().reference().child("reports")
 
         let reportRef = geofireRef.childByAutoId()
@@ -219,7 +220,7 @@ extension Report {
         geoFire.setLocation(CLLocation(latitude: self.latitude, longitude: self.longitude), forKey: reportAutoID)
         print("the report auto id is ... \(reportAutoID)")
         reportRef.updateChildValues(self.toDict())
- 
+         */
     }
 }
 

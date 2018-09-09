@@ -65,7 +65,7 @@ extension MapViewController: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
         
         // GeoFire implementation
-        queryCircle(withCenter: CLLocation(latitude: position.target.latitude, longitude: position.target.longitude), radius: 15)
+        //queryCircle(withCenter: CLLocation(latitude: position.target.latitude, longitude: position.target.longitude), radius: 15)
     }
 }
 
@@ -149,5 +149,14 @@ extension MapViewController {
             print("Key '\(key)' entered the search area and is at location '\(location)'")
         })
         */
+    }
+    
+    func beginGlobalQuery() {
+        let dbRef = Database.database().reference()
+        let reportsRef = dbRef.child("reports")
+        reportsRef.observe(.childAdded, with: { (snapshot) in
+            self.reports.append(Report(fromSnapshot: snapshot))
+            
+        })
     }
 }
