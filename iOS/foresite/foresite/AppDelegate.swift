@@ -14,6 +14,7 @@ import IQKeyboardManagerSwift
 import UserNotifications
 import UserNotificationsUI
 import FirebaseMessaging
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -112,18 +113,72 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         // Get the meeting ID from the original notification.
         let userInfo = response.notification.request.content.userInfo
         
+        var responseReport = Report(fromDictionary: userInfo as! [String : Any])
+
         if response.notification.request.content.categoryIdentifier ==
             "NEARBY_REPORT_NOTIFICATION" {
-            // Retrieve the meeting details.
-            let meetingID = userInfo["MEETING_ID"] as! String
-            let userID = userInfo["USER_ID"] as! String
-            
+
             switch response.actionIdentifier {
             case "YES_ACTION":
                 print("\nthe user responded yes")
+                
+                var locationManager: CLLocationManager!
+                locationManager = CLLocationManager()
+                locationManager.startUpdatingLocation()
+                
+                // break out and don't record data point if the location is inaccessible
+                if (locationManager.location == nil) {
+                    locationManager.stopUpdatingLocation()
+                    return
+                } else {
+                    print("\n\n\nFound the current location ")
+                }
+                
+                responseReport.latitude = locationManager.location?.coordinate.latitude
+                responseReport.longitude = locationManager.location?.coordinate.longitude
+                print(responseReport.latitude)
+                print(responseReport.longitude)
+                locationManager.stopUpdatingLocation()
+                
+                responseReport.time = Date().toISO8601()
+                responseReport.comment = ""
+                
+                responseReport.deviceID = UIDevice.current.identifierForVendor!.uuidString
+                responseReport.isInitialReport = false
+                responseReport.hasSeen = true
+                
+                responseReport.upload()
+                
                 break
             case "NO_ACTION":
                 print("\nthe user responded no")
+                
+                var locationManager: CLLocationManager!
+                locationManager = CLLocationManager()
+                locationManager.startUpdatingLocation()
+                
+                // break out and don't record data point if the location is inaccessible
+                if (locationManager.location == nil) {
+                    locationManager.stopUpdatingLocation()
+                    return
+                } else {
+                    print("\n\n\nFound the current location ")
+                }
+                
+                responseReport.latitude = locationManager.location?.coordinate.latitude
+                responseReport.longitude = locationManager.location?.coordinate.longitude
+                
+                locationManager.stopUpdatingLocation()
+                
+                responseReport.time = Date().toISO8601()
+                responseReport.comment = ""
+                
+                responseReport.deviceID = UIDevice.current.identifierForVendor!.uuidString
+                responseReport.isInitialReport = false
+                responseReport.hasSeen = false
+                
+                responseReport.upload()
+                
                 break
             case UNNotificationDefaultActionIdentifier,
                  UNNotificationDismissActionIdentifier:

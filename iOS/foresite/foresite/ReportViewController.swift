@@ -37,10 +37,7 @@ class ReportViewController: UIViewController, GMSPlacePickerViewControllerDelega
     @IBAction func submitReport(_ sender: Any) {
         
         var newReport = Report()
-        //Report(latitude: <#T##CLLocationDegrees#>, longitude: <#T##CLLocationDegrees#>, time: <#T##Date#>, disasterType: <#T##Report.DisasterTypes#>, comment: <#T##String#>)
         
-
-
         newReport.latitude = place?.coordinate.latitude
         newReport.longitude = place?.coordinate.longitude
         
@@ -62,6 +59,11 @@ class ReportViewController: UIViewController, GMSPlacePickerViewControllerDelega
         }
         
         newReport.comment = commentTextField.text
+        
+        newReport.deviceID = UIDevice.current.identifierForVendor!.uuidString
+        newReport.isInitialReport = true
+        // uniqueID set later
+        newReport.hasSeen = true
         
         uploadReport(report: newReport)
         
@@ -152,11 +154,6 @@ class ReportViewController: UIViewController, GMSPlacePickerViewControllerDelega
         }
     }
     
-    
-    
-    
-    
-    
 }
 
 // MARK: -Firebase data upload
@@ -166,10 +163,11 @@ extension ReportViewController {
         
         let reportRef = geofireRef.childByAutoId()
         let reportAutoID = reportRef.key
+        report.uniqueID = reportAutoID
         
         let geoFire = GeoFire(firebaseRef: geofireRef)
         
-        geoFire.setLocation(CLLocation(latitude: (place?.coordinate.latitude)!, longitude: (place?.coordinate.longitude)!), forKey: reportAutoID)
+        geoFire.setLocation(CLLocation(latitude: report.latitude, longitude: report.longitude), forKey: reportAutoID)
         
         reportRef.updateChildValues(report.toDict())
     }

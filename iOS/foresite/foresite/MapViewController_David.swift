@@ -14,7 +14,7 @@ import GooglePlaces
 extension MapViewController {
     
     func reportButtonPressed() {
-        generateData()
+        
     }
     
     

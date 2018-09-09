@@ -9,6 +9,8 @@
 import Foundation
 import CoreLocation
 import Firebase
+import GeoFire
+
 
 class Report {
     
@@ -27,6 +29,11 @@ class Report {
     var comment: String!
     var otherDescription: String!
     
+    var deviceID: String!
+    var isInitialReport: Bool!
+    var uniqueID: String!
+    var hasSeen: Bool!
+    
     init() {
         latitude = 0
         longitude = 0
@@ -34,9 +41,16 @@ class Report {
         disasterType = .other
         comment = ""
         otherDescription = ""
+        
+        deviceID = ""
+        isInitialReport = true
+        uniqueID = ""
+        hasSeen = true
     }
     
-    init(latitude: CLLocationDegrees, longitude: CLLocationDegrees, time: Date, disasterType: DisasterTypes, comment: String) {
+    convenience init(latitude: CLLocationDegrees, longitude: CLLocationDegrees, time: Date, disasterType: DisasterTypes, comment: String, deviceID: String, isInitialReport: Bool, uniqueID: String, hasSeen: Bool) {
+        self.init()
+        
         self.latitude = latitude
         self.longitude = longitude
         self.time = time.toISO8601()
@@ -44,7 +58,10 @@ class Report {
         self.comment = comment
     }
     
-    init(fromDictionary dict: [String: Any]) {
+    convenience init(fromDictionary dict: [String: Any]) {
+        // create a default Report
+        self.init()
+        
         if let latitude = dict["latitude"] as? CLLocationDegrees {
             self.latitude = latitude
         }
@@ -71,6 +88,9 @@ class Report {
                 self.disasterType = .other
                 if let otherDescription = dict["otherDescription"] as? String {
                     self.otherDescription = otherDescription
+                    print("the other description was fond")
+                    print(self.otherDescription)
+                    print("done")
                 }
             default:
                 print("error: defaulted")
@@ -80,9 +100,29 @@ class Report {
         if let comment = dict["comment"] as? String {
             self.comment = comment
         }
+        
+        if let deviceID = dict["deviceID"] as? String {
+            self.deviceID = deviceID
+        }
+        
+        if let isInitialReport = dict["isInitialReport"] as? Bool {
+            self.isInitialReport = isInitialReport
+        }
+        
+        if let uniqueID = dict["uniqueID"] as? String {
+            self.uniqueID = uniqueID
+        }
+        
+        if let hasSeen = dict["hasSeen"] as? Bool {
+            self.hasSeen = hasSeen
+        }
+
     }
     
-    init(fromSnapshot snapshot: DataSnapshot) {
+    convenience init(fromSnapshot snapshot: DataSnapshot) {
+        // create a default Report
+        self.init()
+        
         if let latitude = snapshot.childSnapshot(forPath: "latitude").value as? CLLocationDegrees {
             self.latitude = latitude
         }
@@ -109,6 +149,9 @@ class Report {
                 self.disasterType = .other
                 if let otherDescription = snapshot.childSnapshot(forPath: "otherDescription").value as? String {
                     self.otherDescription = otherDescription
+                    print("the other description is ")
+                    print(self.otherDescription)
+                    print("done")
                 }
             default:
                 print("error: defaulted")
@@ -118,17 +161,53 @@ class Report {
         if let comment = snapshot.childSnapshot(forPath: "comment").value as? String {
             self.comment = comment
         }
+        
+        if let deviceID = snapshot.childSnapshot(forPath: "deviceID").value as? String {
+            self.deviceID = deviceID
+        }
+        
+        if let isInitialReport = snapshot.childSnapshot(forPath: "isInitialReport").value as? Bool {
+            self.isInitialReport = isInitialReport
+        }
+        
+        if let uniqueID = snapshot.childSnapshot(forPath: "uniqueID").value as? String {
+            self.uniqueID = uniqueID
+        }
+        
+        if let hasSeen = snapshot.childSnapshot(forPath: "hasSeen").value as? Bool {
+            self.hasSeen = hasSeen
+        }
     }
     
     func toDict() -> [String: Any] {
         return [
-            "latitude" : latitude,
-            "longitude" : longitude,
-            "time" : time,
+            "latitude" : latitude!,
+            "longitude" : longitude!,
+            "time" : time!,
             "disasterType" : disasterType.rawValue,
-            "comment" : comment,
-            "otherDescription" : otherDescription
+            "comment" : comment!,
+            "otherDescription" : otherDescription!,
+            "deviceID": deviceID!,
+            "isInitialReport": isInitialReport!,
+            "uniqueID": uniqueID!,
+            "hasSeen": hasSeen!
         ]
+    }
+}
+
+extension Report {
+    func upload() {
+        let geofireRef = Database.database().reference().child("reports")
+
+        let reportRef = geofireRef.childByAutoId()
+        let reportAutoID = reportRef.key
+        self.uniqueID = reportAutoID
+        
+        let geoFire = GeoFire(firebaseRef: geofireRef)
+        
+        geoFire.setLocation(CLLocation(latitude: self.latitude, longitude: self.longitude), forKey: reportAutoID)
+        print("the report auto id is ... \(reportAutoID)")
+        reportRef.updateChildValues(self.toDict())
     }
 }
 

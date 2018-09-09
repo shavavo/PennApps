@@ -69,7 +69,7 @@ extension MapViewController: GMSMapViewDelegate {
 
 // MARK: -Generate Data
 extension MapViewController {
-    
+    /*
     func generateData() {
         let geofireRef = Database.database().reference().child("reports")
         
@@ -84,6 +84,7 @@ extension MapViewController {
         //let geofireRef = FIRDatabase.database().reference()
         //let geoFire = GeoFire(firebaseRef: geofireRef)
     }
+    */
 }
 
 // MARK: -GeoQuery
