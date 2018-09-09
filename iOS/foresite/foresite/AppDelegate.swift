@@ -147,8 +147,17 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                 responseReport.isInitialReport = false
                 responseReport.hasSeen = true
                 
-                responseReport.upload()
-                
+                DispatchQueue.main.async {
+                    responseReport.upload()
+                }
+                //responseReport.upload()
+                /*
+                let dbRef = Database.database().reference().child("reports")
+                let reportRef = dbRef.childByAutoId()
+                let reportAutoID = reportRef.key
+                responseReport.uniqueID = reportAutoID
+                reportRef.updateChildValues(responseReport.toDict())*/
+
                 break
             case "NO_ACTION":
                 print("\nthe user responded no")
