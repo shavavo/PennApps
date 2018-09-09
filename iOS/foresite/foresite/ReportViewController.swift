@@ -36,12 +36,12 @@ class ReportViewController: UIViewController, GMSPlacePickerViewControllerDelega
     
     @IBAction func submitReport(_ sender: Any) {
         
-        var newReport = Report()
+        let newReport = Report()
         
         newReport.latitude = place?.coordinate.latitude
         newReport.longitude = place?.coordinate.longitude
         
-        var type = pickerData[picker.selectedRow(inComponent: 0)]
+        let type = pickerData[picker.selectedRow(inComponent: 0)]
         switch type {
         case "Flood":
             newReport.disasterType = .flood
@@ -85,7 +85,7 @@ class ReportViewController: UIViewController, GMSPlacePickerViewControllerDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        pickerData = ["Flood", "Fire", "Earthquake", "Tsunami", "Other"]
+        pickerData = ["Earthquake", "Fire", "Flood", "Tsunami", "Other"]
         picker.selectRow(2, inComponent: 0, animated: false)
         customType.isHidden = true
         
