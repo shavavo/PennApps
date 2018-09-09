@@ -16,6 +16,7 @@ import FirebaseCore
 import Firebase
 
 import Toast_Swift
+import iOSDropDown
 
 class MapViewController: UIViewController {
 
@@ -30,11 +31,10 @@ class MapViewController: UIViewController {
     let DEFAULT_ZOOM: Float = 14
     
     var reports: [Report] = []
-    var reportIDs: [String] = []
-    var seenReportIDs = NSMutableSet()
     
     var ref: DatabaseReference!
     
+    @IBOutlet weak var dropdown: DropDown!
     
     
     override func viewDidLoad() {
@@ -63,8 +63,14 @@ class MapViewController: UIViewController {
             }
         }
         
-        seenReportIDs.removeAllObjects()
+
         
+        dropdown.optionArray = ["Earthquake", "Fire", "Flood", "Tsunami"]
+        dropdown.optionIds = [0,1,2,3]
+        dropdown.isSearchEnable = false
+        dropdown.selectedRowColor = .black
+        dropdown.rowHeight = 75
+        dropdown.listHeight = 300
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -113,33 +119,5 @@ class MapViewController: UIViewController {
         ref = Database.database().reference()
     }
     
-    func addMarkers() {
-        print(reports.count)
-        
-        for x in 0..<reports.count {
-            if(!seenReportIDs.contains(reportIDs[x])) {
 
-                var report = reports[x]
-
-                print("ADDED MARKER")
-
-                let position = CLLocationCoordinate2D(latitude: report.latitude, longitude: report.longitude)
-                let marker = GMSMarker(position: position)
-
-                let markerImage = UIImage(named: report.disasterType.rawValue)!
-                let markerView = UIImageView(frame: CGRect(x:0, y:0, width:50, height:50))
-                markerView.image = markerImage
-
-                marker.iconView = markerView
-                marker.tracksViewChanges = false
-                marker.map = mapView
-                marker.title = report.comment
-         
-               
-                seenReportIDs.add(reportIDs[x])
-
-            }
-
-        }
-    }
 }

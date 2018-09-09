@@ -96,21 +96,18 @@ extension MapViewController {
 //        print(location)
         // clear previous values stored in reports
         reports = []
-        reportIDs = []
         
         let geofireReportsRef = Database.database().reference().child("reports")
         let geoFire = GeoFire(firebaseRef: geofireReportsRef)
         
         let center = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         // Query locations at center with a radius of km
-        var circleQuery = geoFire.query(at: center, withRadius: radius)
+        let circleQuery = geoFire.query(at: center, withRadius: radius)
 
         // TODO: impose limitations on query size
         
         var queryHandle = circleQuery.observe(.keyEntered, with: { (key: String!, location: CLLocation!) in
             self.ref.child("reports").child(key).observe(.value, with: { (snapshot) in
-                
-                self.reportIDs.append(key)
                 self.reports.append(Report(fromSnapshot: snapshot))
 //                print("\ndata extracted")
             }) { (error) in
@@ -133,7 +130,7 @@ extension MapViewController {
         
         circleQuery.observeReady {
             // All initial data has been loaded and events have been fired!
-            self.addMarkers()
+         
         }
         
         
@@ -155,7 +152,23 @@ extension MapViewController {
         let dbRef = Database.database().reference()
         let reportsRef = dbRef.child("reports")
         reportsRef.observe(.childAdded, with: { (snapshot) in
-            self.reports.append(Report(fromSnapshot: snapshot))
+            let report = Report(fromSnapshot: snapshot)
+            self.reports.append(report)
+            
+   
+    
+            let position = CLLocationCoordinate2D(latitude: report.latitude, longitude: report.longitude)
+            let marker = GMSMarker(position: position)
+            
+            let markerImage = UIImage(named: report.disasterType.rawValue)!
+            let markerView = UIImageView(frame: CGRect(x:0, y:0, width:50, height:50))
+            markerView.image = markerImage
+            
+            marker.iconView = markerView
+            marker.tracksViewChanges = false
+            marker.map = self.mapView
+            marker.title = report.comment
+            
             
         })
     }

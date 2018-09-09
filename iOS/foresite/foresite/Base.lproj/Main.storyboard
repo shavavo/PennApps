@@ -27,7 +27,7 @@
                                 <rect key="frame" x="88" y="607" width="200" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="SGx-7o-oqn"/>
+                                    <constraint firstAttribute="height" constant="40" id="411-fa-Y8V"/>
                                 </constraints>
                                 <state key="normal" title="Report">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -38,30 +38,30 @@
                                     </segue>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E3M-s1-rT7">
-                                <rect key="frame" x="20" y="40" width="100" height="30"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Resources"/>
-                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="esZ-RF-gfY" customClass="DropDown" customModule="iOSDropDown">
+                                <rect key="frame" x="20" y="35" width="177" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zu1-aa-bQk" secondAttribute="trailing" constant="87" id="7Wb-3g-8Qt"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="E3M-s1-rT7" secondAttribute="trailing" constant="255" id="7c9-3B-i8m"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="zu1-aa-bQk" secondAttribute="bottom" constant="20" id="Cn1-Sg-ta3"/>
-                            <constraint firstItem="E3M-s1-rT7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="E0b-Yb-3Zl"/>
-                            <constraint firstAttribute="trailing" secondItem="eYi-Hb-Kh0" secondAttribute="trailing" id="E2q-vc-U3b"/>
-                            <constraint firstItem="eYi-Hb-Kh0" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Hfc-2m-d1g"/>
-                            <constraint firstItem="zu1-aa-bQk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="88" id="I6j-GT-Le6"/>
-                            <constraint firstItem="eYi-Hb-Kh0" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="SJM-uS-Ukq"/>
-                            <constraint firstItem="E3M-s1-rT7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="bzA-vR-mxf"/>
-                            <constraint firstAttribute="bottom" secondItem="eYi-Hb-Kh0" secondAttribute="bottom" id="ftq-G7-ZAf"/>
-                            <constraint firstItem="eYi-Hb-Kh0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="iox-sH-tqh"/>
+                            <constraint firstItem="eYi-Hb-Kh0" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="2b6-Kd-mzK"/>
+                            <constraint firstItem="esZ-RF-gfY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="7aN-51-QfV"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="esZ-RF-gfY" secondAttribute="trailing" constant="178" id="ArZ-Nk-am5"/>
+                            <constraint firstItem="eYi-Hb-Kh0" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="CnA-dE-kl5"/>
+                            <constraint firstItem="eYi-Hb-Kh0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="FXc-cu-hBF"/>
+                            <constraint firstAttribute="trailing" secondItem="eYi-Hb-Kh0" secondAttribute="trailing" id="P91-JH-v2C"/>
+                            <constraint firstAttribute="bottom" secondItem="zu1-aa-bQk" secondAttribute="bottom" constant="20" symbolic="YES" id="Tkm-Zc-Pmf"/>
+                            <constraint firstItem="eYi-Hb-Kh0" firstAttribute="centerX" secondItem="zu1-aa-bQk" secondAttribute="centerX" id="lL3-lB-BJe"/>
+                            <constraint firstItem="esZ-RF-gfY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="15" id="siL-DP-RAH"/>
+                            <constraint firstItem="zu1-aa-bQk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="88" id="w7L-QT-LPj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="dropdown" destination="esZ-RF-gfY" id="mH9-8Q-Euu"/>
                         <outlet property="mapView" destination="eYi-Hb-Kh0" id="G8W-FT-LJN"/>
                         <segue destination="zAD-uh-gvs" kind="showDetail" identifier="tips" id="LGj-1e-W8P"/>
                     </connections>

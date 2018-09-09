@@ -23,6 +23,8 @@ class ReportViewController: UIViewController, GMSPlacePickerViewControllerDelega
     @IBOutlet weak var address: UILabel!
     @IBOutlet weak var commentTextField: UITextField!
     
+    
+    
     @IBAction func locationTypeChanged(_ sender: Any) {
         if(locationPicker.selectedSegmentIndex==1) {
             let config = GMSPlacePickerConfig(viewport: nil)
