@@ -83,7 +83,7 @@ class MapViewController: UIViewController {
             if let destVC = segue.destination as? TipsViewController {
                 destVC.type = recentlySubmitted!
                 
-                if sender as! String=="resources" {
+                if sender is String && sender as! String=="resources" {
                     destVC.showBefore=true;
                 }
             }
