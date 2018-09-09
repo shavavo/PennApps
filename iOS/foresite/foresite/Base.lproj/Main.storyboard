@@ -33,7 +33,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="mql-cT-I5u" kind="popoverPresentation" popoverAnchorView="zu1-aa-bQk" id="Dxg-e0-UTD">
+                                    <segue destination="mql-cT-I5u" kind="popoverPresentation" identifier="newReport" popoverAnchorView="zu1-aa-bQk" id="Dxg-e0-UTD">
                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                     </segue>
                                 </connections>

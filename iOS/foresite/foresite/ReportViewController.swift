@@ -14,13 +14,14 @@ import GeoFire
 
 
 class ReportViewController: UIViewController, GMSPlacePickerViewControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
-
+    
+    var userLocation: CLLocation? = nil
+    
     @IBOutlet weak var picker: UIPickerView!
     @IBOutlet weak var customType: UITextField!
     @IBOutlet weak var locationPicker: UISegmentedControl!
     @IBOutlet weak var address: UILabel!
     @IBOutlet weak var commentTextField: UITextField!
-    
     
     @IBAction func locationTypeChanged(_ sender: Any) {
         if(locationPicker.selectedSegmentIndex==1) {
@@ -80,7 +81,7 @@ class ReportViewController: UIViewController, GMSPlacePickerViewControllerDelega
     }
     
     
-    var place:GMSPlace? = nil
+    var place:CLLocation? = nil
     var pickerData: [String] = [String]()
     
     override func viewDidLoad() {
@@ -93,19 +94,10 @@ class ReportViewController: UIViewController, GMSPlacePickerViewControllerDelega
     }
     
     func getCurrentPlace() {
-        let placesClient = GMSPlacesClient()
-        placesClient.currentPlace(callback: { (placeLikelihoods, error) -> Void in
-            if error != nil {
-                // Handle error in some way.
-            }
-            
-            if let placeLikelihood = placeLikelihoods?.likelihoods.first {
-                let place = placeLikelihood.place
-                // Do what you want with the returned GMSPlace.
-                self.place = place
-                self.updateAddressLabel(place: place)
-            }
-        })
+
+        
+        self.place = userLocation
+        self.updateAddressLabel()
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -135,8 +127,9 @@ class ReportViewController: UIViewController, GMSPlacePickerViewControllerDelega
     func placePicker(_ viewController: GMSPlacePickerViewController, didPick place: GMSPlace) {
         // Dismiss the place picker, as it cannot dismiss itself.
         viewController.dismiss(animated: true, completion: nil)
-        updateAddressLabel(place: place)
-        self.place = place
+        
+        self.place = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
+        updateAddressLabel()
     }
     
     func placePickerDidCancel(_ viewController: GMSPlacePickerViewController) {
@@ -146,12 +139,16 @@ class ReportViewController: UIViewController, GMSPlacePickerViewControllerDelega
         
     }
     
-    func updateAddressLabel(place:GMSPlace) {
-        if let addressText = place.formattedAddress {
-            address.text = addressText
-        } else {
-            address.text = String(place.coordinate.latitude) + ", " + String(place.coordinate.longitude)
-        }
+    func updateAddressLabel() {
+        address.text = (place?.coordinate.latitude.description)! + ", " + (place?.coordinate.longitude.description)!
+        
+       
+    }
+    
+    
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        userLocation = locations.last
     }
     
 }

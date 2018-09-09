@@ -71,6 +71,11 @@ class MapViewController: UIViewController {
                 destVC.type = recentlySubmitted!
             }
         }
+        else if segue.identifier == "newReport" {
+            if let destVC = segue.destination as? ReportViewController {
+                destVC.userLocation = self.userLocation
+            }
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
