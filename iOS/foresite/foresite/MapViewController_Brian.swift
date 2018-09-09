@@ -67,6 +67,18 @@ extension MapViewController: GMSMapViewDelegate {
         // GeoFire implementation
         //queryCircle(withCenter: CLLocation(latitude: position.target.latitude, longitude: position.target.longitude), radius: 15)
     }
+    
+    /*
+     custom function for demos, drops points at tap
+     */
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        var demoReport = Report()
+        demoReport.disasterType = .fire
+        demoReport.latitude = coordinate.latitude
+        demoReport.longitude = coordinate.longitude
+        demoReport.upload()
+        print("did tap at \(coordinate)")
+    }
 }
 
 // MARK: -Generate Data
