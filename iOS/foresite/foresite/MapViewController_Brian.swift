@@ -63,6 +63,8 @@ extension MapViewController: CLLocationManagerDelegate {
 
 extension MapViewController: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
+        
+        // GeoFire implementation
         queryCircle(withCenter: CLLocation(latitude: position.target.latitude, longitude: position.target.longitude), radius: 15)
     }
 }
