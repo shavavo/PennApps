@@ -86,10 +86,12 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         // Define the custom actions.
         let yesAction = UNNotificationAction(identifier: "YES_ACTION",
                                                 title: "yes",
-                                                options: UNNotificationActionOptions(rawValue: 0))
+                                                options: [.foreground])
         let noAction = UNNotificationAction(identifier: "NO_ACTION",
                                                  title: "no",
-                                                 options: UNNotificationActionOptions(rawValue: 0))
+                                                 options: [.foreground])
+        // NOTE: actions bring app to the foreground because Firebase points are plotted in background thread
+        
         // Define the notification type
         let nearbyReportNotification =
             UNNotificationCategory(identifier: "NEARBY_REPORT_NOTIFICATION",
@@ -147,9 +149,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                 responseReport.isInitialReport = false
                 responseReport.hasSeen = true
                 
-                DispatchQueue.main.async {
-                    responseReport.upload()
-                }
+                responseReport.upload()
+                
                 //responseReport.upload()
                 /*
                 let dbRef = Database.database().reference().child("reports")

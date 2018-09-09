@@ -206,7 +206,7 @@ extension Report {
         self.uniqueID = reportAutoID
         reportRef.updateChildValues(self.toDict())
  
-        
+        print("hi")
         // GeoCode Implementation
         /*
         let geofireRef = Database.database().reference().child("reports")
